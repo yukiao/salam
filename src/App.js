@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {Container, Text, MantineProvider} from '@mantine/core';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './screens/Home';
+import New from './screens/New';
+import Cards from './screens/Cards'
+import CardList from './screens/CardList';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        fontFamily: 'Montserrat, sans-serif',
+        headings: {
+          fontFamily: "Montserrat"
+        }
+      }}
+    >
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="new" element={<New />} />
+        <Route path="cards/:id" element={<Cards />} />
+        <Route path='list' element={<CardList />} />
+      </Routes>
+    </BrowserRouter>   
+    </MantineProvider>
+  )
 }
 
 export default App;
